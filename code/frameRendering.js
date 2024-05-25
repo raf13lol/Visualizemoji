@@ -32,6 +32,7 @@ function makeFrame(isText = false) {
 
 let time = 0.0;
 let frameNumber = 0;
+let timeArray = [time, frameNumber];
 
 const cloneImage = (image = Jimp.prototype) => {
     return new Promise(async (resolve, reject) => {
@@ -63,6 +64,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
 
     for (let i = 0; i < countOfFrames; i++) {
         frameNumber = i;
+        timeArray = [time, frameNumber];
 
         await scripting.onRenderingBaseFrameStart(time, i);
         let frame = Jimp.prototype; 
@@ -126,4 +128,4 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
 }
 
 
-module.exports = { renderFrameCount, time, frameNumber };
+module.exports = { renderFrameCount, timeArray };

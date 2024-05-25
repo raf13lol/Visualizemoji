@@ -1,7 +1,6 @@
 const Jimp = require("jimp");
 const { clamp } = require("./utils.js");
 const prototypes = require("../prototypes.js");
-const { time, frameNumber } = require("../frameRendering.js");
 
 // gets the pixel index for image.bitmap.data[INDEX]
 // the return is from the actual code of jimp
@@ -55,6 +54,8 @@ const rgbaObjectToArray4 = (rgbaObject = Object.prototype) => {
 }
 
 const runShader = async (image = Jimp.prototype, shaderFunc) => {
+    const { timeArray } = require("../frameRendering.js");
+
     let originalImage = image.cloneQuiet();
 
     for (let y = 0; y < image.bitmap.height; y++)
@@ -72,8 +73,8 @@ const runShader = async (image = Jimp.prototype, shaderFunc) => {
             inProto.uv = [x / (image.bitmap.width - 1), y / (image.bitmap.height - 1)];
             inProto.pixelPos = [x, y];
 
-            inProto.time = time;
-            inProto.frame = frameNumber;
+            inProto.time = timeArray[0];
+            inProto.frame = timeArray[1];
 
             inProto.image = originalImage;
             inProto.alteredImage = image;
