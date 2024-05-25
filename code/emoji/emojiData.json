@@ -1,0 +1,8 @@
+{
+    "comment": "emojiIds is just an array, the array you access it at is the ID, eg emojiIds[0] - ID = 0, dus, track name = '0'",
+    "emojiIds": [
+        "grin",
+        "person",
+        "person_gesturing_no"
+    ]
+}
