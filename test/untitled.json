@@ -1,0 +1,304 @@
+{
+    "header": {
+        "format": 1,
+        "numTracks": 3,
+        "ticksPerBeat": 96
+    },
+    "tracks": [
+        [
+            {
+                "deltaTime": 0,
+                "meta": true,
+                "type": "timeSignature",
+                "numerator": 4,
+                "denominator": 4,
+                "metronome": 24,
+                "thirtyseconds": 8
+            },
+            {
+                "deltaTime": 0,
+                "meta": true,
+                "type": "endOfTrack"
+            }
+        ],
+        [
+            {
+                "deltaTime": 0,
+                "meta": true,
+                "type": "setTempo",
+                "microsecondsPerBeat": 428571
+            },
+            {
+                "deltaTime": 0,
+                "meta": true,
+                "type": "endOfTrack"
+            }
+        ],
+        [
+            {
+                "deltaTime": 0,
+                "meta": true,
+                "type": "trackName",
+                "text": "MIDI Out"
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 10,
+                "value": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 7,
+                "value": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "pitchBend",
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 101,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 100,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 6,
+                "value": 12
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 10,
+                "value": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 7,
+                "value": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "pitchBend",
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 101,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 100,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 6,
+                "value": 12
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 10,
+                "value": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 7,
+                "value": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "pitchBend",
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "noteOn",
+                "noteNumber": 60,
+                "velocity": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 101,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 100,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 6,
+                "value": 12
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 10,
+                "value": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 7,
+                "value": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "pitchBend",
+                "value": 0
+            },
+            {
+                "deltaTime": 192,
+                "channel": 0,
+                "type": "noteOn",
+                "noteNumber": 60,
+                "velocity": 100
+            },
+            {
+                "deltaTime": 191,
+                "channel": 0,
+                "type": "noteOff",
+                "noteNumber": 60,
+                "velocity": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "noteOff",
+                "noteNumber": 60,
+                "velocity": 64
+            },
+            {
+                "deltaTime": 1,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 101,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 100,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 6,
+                "value": 12
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 10,
+                "value": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 7,
+                "value": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "pitchBend",
+                "value": 0
+            },
+            {
+                "deltaTime": 1,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 101,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 100,
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 6,
+                "value": 12
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 10,
+                "value": 64
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "controller",
+                "controllerType": 7,
+                "value": 100
+            },
+            {
+                "deltaTime": 0,
+                "channel": 0,
+                "type": "pitchBend",
+                "value": 0
+            },
+            {
+                "deltaTime": 0,
+                "meta": true,
+                "type": "endOfTrack"
+            }
+        ]
+    ]
+}

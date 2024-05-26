@@ -15,9 +15,9 @@
 
     "comment2": "If infoMidi = 'none', useEmojis will be treated as false",
     "comment7": "if you have an infomidi, put infoMidi as eg 'midi.mid' otherwise put it as 'none'",
-    "useEmojis":         true,
-    "emojiScaleToScale": 0.025,
-    "infoMidi":          "1.mid",
+    "useEmojis":          true,
+    "emojiScaleToScreen": 0.05,
+    "infoMidi":           "test/1.mid",
 
     "comment3": "You can change this mid-song with 'songInfomation' in onRenderingPrepText()",
     "comment4": "if you have an infomidi, it will auto fill these starting two for you",
@@ -31,6 +31,6 @@
     "audioFile":    "test/1.mp3",
 
     "displayBPMStuff":     false,
-    "displaySongStuff":    true,
-    "displaySongPosition": true
+    "displaySongStuff":    false,
+    "displaySongPosition": false
 }

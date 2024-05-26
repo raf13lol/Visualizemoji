@@ -53,10 +53,10 @@ const rgbaObjectToArray4 = (rgbaObject = Object.prototype) => {
     return [rgbaObject.r, rgbaObject.g, rgbaObject.b, rgbaObject.a];
 }
 
-const runShader = async (image = Jimp.prototype, shaderFunc) => {
+const runShaders = async (image = Jimp.prototype, shaderFuncs = Array.prototype) => {
     const { timeArray } = require("../frameRendering.js");
 
-    let originalImage = image.cloneQuiet();
+    let baseImage = image.cloneQuiet();
 
     for (let y = 0; y < image.bitmap.height; y++)
         for (let x = 0; x < image.bitmap.width; x++)
@@ -65,31 +65,36 @@ const runShader = async (image = Jimp.prototype, shaderFunc) => {
         
             let inProto = prototypes.inPrototype;
 
-            inProto.r = image.bitmap.data[idx];
-            inProto.g = image.bitmap.data[idx + 1];
-            inProto.b = image.bitmap.data[idx + 2];
-            inProto.a = image.bitmap.data[idx + 3];
-
             inProto.uv = [x / (image.bitmap.width - 1), y / (image.bitmap.height - 1)];
             inProto.pixelPos = [x, y];
 
             inProto.time = timeArray[0];
             inProto.frame = timeArray[1];
 
-            inProto.image = originalImage;
-            inProto.alteredImage = image;
+            inProto.baseImage = baseImage;
+            inProto.image = image;
 
-            let outProto = {r: inProto.r, g: inProto.g, b: inProto.b, a: inProto.a};
+            for (let i = 0; i < shaderFuncs.length; i ++)
+            {
+                inProto.shaderOrder = i;
 
-            await shaderFunc(inProto, outProto);
+                inProto.r = image.bitmap.data[idx];
+                inProto.g = image.bitmap.data[idx + 1];
+                inProto.b = image.bitmap.data[idx + 2];
+                inProto.a = image.bitmap.data[idx + 3];
 
-            image.bitmap.data[idx] = outProto.r;
-            image.bitmap.data[idx + 1] = outProto.g;
-            image.bitmap.data[idx + 2] = outProto.b;
-            image.bitmap.data[idx + 3] = outProto.a;
+                let outProto = {r: inProto.r, g: inProto.g, b: inProto.b, a: inProto.a};
+
+                await shaderFunc(inProto, outProto);
+
+                image.bitmap.data[idx] = outProto.r;
+                image.bitmap.data[idx + 1] = outProto.g;
+                image.bitmap.data[idx + 2] = outProto.b;
+                image.bitmap.data[idx + 3] = outProto.a;
+            }
         }
 };
 
 module.exports = { getPixelIndex, getPixelFromUV, rgbaObjectToArray4,
-    runShader
+    runShaders
 };

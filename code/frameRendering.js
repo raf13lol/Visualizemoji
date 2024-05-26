@@ -6,7 +6,7 @@ const { exec } = require("node:child_process");
 
 const scripting = require("./scripting.js");
 const prototypes = require("./prototypes.js");
-const { runShader } = require("./utils/shaderUtils.js");
+const { runShaders } = require("./utils/shaderUtils.js");
 const { secondsToNiceFancyText, makeDir } = require("./utils/utils.js");
 
 
@@ -34,14 +34,6 @@ let time = 0.0;
 let frameNumber = 0;
 let timeArray = [time, frameNumber];
 
-const cloneImage = (image = Jimp.prototype) => {
-    return new Promise(async (resolve, reject) => {
-        new Jimp({ data: image.bitmap.data, width: image.bitmap.width, height: image.bitmap.height }, (err, newImg) => {
-            resolve(newImg);
-        });
-    });
-}
-
 const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototype, countOfFrames = Number.prototype) => {
     const songinfo = songInfo;
 
@@ -56,9 +48,6 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
     let font = await Jimp.loadFont(`assets/font/${videoSettings.fontName}${videoSettings.fontSize}${videoSettings.blackFont ? "black" : "white"}.fnt`);
     time = 0.0;
 
-    let baseFrame = Jimp.prototype;
-    baseFrame = await makeFrame();
-
     let start = Date.now();
     let anyText = (videoSettings.displayBPMStuff || videoSettings.displaySongPosition || videoSettings.displaySongStuff)
 
@@ -68,7 +57,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
 
         await scripting.onRenderingBaseFrameStart(time, i);
         let frame = Jimp.prototype; 
-        frame = await cloneImage(baseFrame);
+        frame = await makeFrame();
 
         await scripting.onRenderedBaseFrame(frame, time, i);
         
@@ -99,9 +88,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
 
             }
             
-            for (let i = 0; i < shadersToRunOnText.length; i++) {
-                await runShader(textFrame, shadersToRunOnText[i]);
-            }
+            await runShaders(textFrame, shadersToRunOnText);
 
             frame.composite(textFrame, 0, 0);
         }
@@ -117,7 +104,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
     console.log(`Utilize FFMPEG to combine the frames together`)
 
     // -y is needed!
-    exec(`ffmpeg -framerate ${videoSettings.frameRate} -i output/rendering/frame%d.png -c:v libx264 -r ${videoSettings.frameRate} -pix_fmt yuv420p -y output/output.mp4`, 
+    exec(`ffmpeg -framerate ${videoSettings.frameRate} -i output/rendering/frame%d.png -i ${videoSettings.audioFile} -c:v libx264 -r ${videoSettings.frameRate} -pix_fmt yuv420p -y output/output.mp4`, 
     (err, stdout, stderr) => {
         if (err) {
             console.error(err);
