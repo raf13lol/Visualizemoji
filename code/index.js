@@ -1,7 +1,7 @@
 // This file is where the code to render the frames and any other admin stuff here
 const frameRendering = require("./frameRendering.js");
 const videoSettings = require("../videoSettings.json");
-
+const emojiPrep = require("../code/frameRendering.js")
 const fs = require("fs");
 const midiFile = require("midi-file");
 
