@@ -27,7 +27,13 @@ async function onRenderingBaseFrameStart(time = Number.prototype, frame = Number
 }
 
 // this is just after the makeFrame function is called
+// this is also before the emojis are rendered
 async function onRenderedBaseFrame(baseFrame = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
+
+}
+
+// this is for specific effects on the eomji only
+async function onRenderedEmojis(emojiFrame = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
 
 }
 
@@ -40,8 +46,8 @@ async function onRenderingPrepText(songInfo = prototypes.songInfoPrototype.proto
 }
 
 async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.outPrototype) {
-    let r = shaderUtils.getPixelFromUV([i.uv[0] + 0.003, i.uv[1]], i.image, true);
-    let b = shaderUtils.getPixelFromUV([i.uv[0] - 0.003, i.uv[1]], i.image, true);
+    let r = shaderUtils.getPixelFromUV([i.uv[0] + 0.003, i.uv[1]], i.baseImage, true);
+    let b = shaderUtils.getPixelFromUV([i.uv[0] - 0.003, i.uv[1]], i.baseImage, true);
 
     o.r = r.r;
     o.g = i.g;
@@ -58,5 +64,6 @@ async function onFullRenderedImage(finalImage = Jimp.prototype, time = Number.pr
 module.exports = { 
     onRenderingPrepStart, onRenderingPrepDone, 
     onRenderingBaseFrameStart, onRenderedBaseFrame,
-    onRenderingPrepText, onFullRenderedImage
+    onRenderingPrepText, onFullRenderedImage,
+    onRenderedEmojis
 };

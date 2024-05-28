@@ -1,5 +1,7 @@
 const fs = require("node:fs");
 
+// if directory exists, Fucking kill the directory then make a new one
+// if it doesn't, make it
 const makeDir = (dirname) => {
     if (!fs.existsSync(dirname))
         fs.mkdirSync(dirname);

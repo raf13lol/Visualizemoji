@@ -63,7 +63,7 @@ const runShaders = async (image = Jimp.prototype, shaderFuncs = Array.prototype)
         {
             let idx = getPixelIndex(image.bitmap.width, x, y, false, true);
         
-            let inProto = prototypes.inPrototype;
+            let inProto = {...prototypes.inPrototype};
 
             inProto.uv = [x / (image.bitmap.width - 1), y / (image.bitmap.height - 1)];
             inProto.pixelPos = [x, y];
@@ -85,7 +85,7 @@ const runShaders = async (image = Jimp.prototype, shaderFuncs = Array.prototype)
 
                 let outProto = {r: inProto.r, g: inProto.g, b: inProto.b, a: inProto.a};
 
-                await shaderFunc(inProto, outProto);
+                await shaderFuncs[i](inProto, outProto);
 
                 image.bitmap.data[idx] = outProto.r;
                 image.bitmap.data[idx + 1] = outProto.g;

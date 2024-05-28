@@ -1,5 +1,7 @@
 const Jimp = require("jimp");
 
+//? Reinventing TypeScript because we're just like that.
+
 // shader prototypes
 const inPrototype = {
     r: Number.prototype, g: Number.prototype, b: Number.prototype, a: Number.prototype,
@@ -25,7 +27,8 @@ const outPrototype = {
 // song info
 const songInfoPrototype = {
     bpm: Number.prototype, timeSign: String.prototype, 
-    artist: String.prototype, songName: String.prototype
+    artist: String.prototype, songName: String.prototype,
+    songDuration: Number.prototype
 };
 
 // emoji/midi stuff
@@ -34,8 +37,20 @@ const songInfoPrototype = {
 const midiNoteDataStuffPrototype = {
     deltaTicksStart: Number.prototype, secondsStart: Number.prototype,
     deltaTicksEnd: Number.prototype, secondsEnd: Number.prototype,
+    velocity: Number.prototype // blauweman wanted a velocity alpha thing soooo
     ////noteNumber: Number.prototype //*? uhm please fact check me on this
     //? gitignore ^^, i found a method that doesnt impose on this work
 }
 
-module.exports = { inPrototype, outPrototype, songInfoPrototype, midiNoteDataStuffPrototype };
+// emoji prototype..
+const emojiPrototype = {
+    image: Jimp.prototype, 
+    startingAlpha: Number.prototype, scale: Number.prototype, position: Array.prototype, angle: Number.prototype,
+    movementOffset: Array.prototype,
+    imageName: String.prototype, // identification?
+    trackName: String.prototype, trackId: Number.prototype, // all of the flags
+    // there (seconds)
+    noteStart: Number.prototype, noteEnd: Number.prototype, lastNoteIndex: Number.prototype
+}
+
+module.exports = { inPrototype, outPrototype, songInfoPrototype, midiNoteDataStuffPrototype, emojiPrototype };

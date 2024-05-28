@@ -2,6 +2,7 @@
 const frameRendering = require("./frameRendering.js");
 const videoSettings = require("../videoSettings.json");
 const emojiPrep = require("../code/emoji/emojiPrep.js");
+const { renderEmojis } = require("./emoji/emojiScripting.js");
 
 if (videoSettings.height % 2 == 1)
 {
@@ -9,9 +10,11 @@ if (videoSettings.height % 2 == 1)
     return;
 }
 
-emojiPrep.doAllThePrepping().then(() => {
-    // frameRendering.renderFrameCount({ 
-    //     bpm: videoSettings.bpm, timeSign: videoSettings.timeSign,
-    //     artist: videoSettings.artist, songName: videoSettings.songName}, videoSettings.frameRate * videoSettings.songDuration + Math.floor(videoSettings.frameRate / 6));
+let data = { bpm: videoSettings.bpm, timeSign: videoSettings.timeSign,
+     artist: videoSettings.artist, songName: videoSettings.songName,
+     songDuration: videoSettings.songDuration}
+     
+emojiPrep.doAllThePrepping(data).then(() => {
+    frameRendering.renderFrameCount(data, videoSettings.frameRate * videoSettings.songDuration + Math.floor(videoSettings.frameRate / 6));1
 });
 

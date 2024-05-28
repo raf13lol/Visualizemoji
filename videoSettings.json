@@ -16,8 +16,8 @@
     "comment2": "If infoMidi = 'none', useEmojis will be treated as false",
     "comment7": "if you have an infomidi, put infoMidi as eg 'midi.mid' otherwise put it as 'none'",
     "useEmojis":          true,
-    "emojiScaleToScreen": 0.05,
-    "infoMidi":           "test/1.mid",
+    "emojiScaleToScreen": 0.1,
+    "infoMidi":           "test/bpmchange.mid",
 
     "comment3": "You can change this mid-song with 'songInfomation' in onRenderingPrepText()",
     "comment4": "if you have an infomidi, it will auto fill these starting two for you",
@@ -27,10 +27,10 @@
     "comment5": "Song infomation (songDuration is in seconds and is needed for the program to generate the right amount of frames)",
     "artist":       "Song artist here",
     "songName":     "SongName",
-    "songDuration": 90,
+    "songDuration": 18,
     "audioFile":    "test/1.mp3",
 
-    "displayBPMStuff":     false,
-    "displaySongStuff":    false,
-    "displaySongPosition": false
+    "displayBPMStuff":     true,
+    "displaySongStuff":    true,
+    "displaySongPosition": true
 }

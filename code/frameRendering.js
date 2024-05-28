@@ -8,8 +8,8 @@ const scripting = require("./scripting.js");
 const prototypes = require("./prototypes.js");
 const { runShaders } = require("./utils/shaderUtils.js");
 const { secondsToNiceFancyText, makeDir } = require("./utils/utils.js");
-
-
+const { doingEmojiStuff } = require("./emoji/emojiPrep.js");
+const { renderEmojis } = require("./emoji/emojiScripting.js");
 
 // why do i have to make a promise?
 function makeFrame(isText = false) {
@@ -34,7 +34,7 @@ let time = 0.0;
 let frameNumber = 0;
 let timeArray = [time, frameNumber];
 
-const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototype, countOfFrames = Number.prototype) => {
+const renderFrameCount = async (songInfo = prototypes.songInfoPrototype, countOfFrames = Number.prototype) => {
     const songinfo = songInfo;
 
     await scripting.onRenderingPrepStart();
@@ -61,6 +61,16 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
 
         await scripting.onRenderedBaseFrame(frame, time, i);
         
+        if (doingEmojiStuff)
+        {
+            let emojiFrame = Jimp.prototype;
+            emojiFrame = await renderEmojis(time, songinfo);
+
+            await scripting.onRenderedEmojis(emojiFrame, time, frameNumber);
+
+            frame.composite(emojiFrame, 0, 0);
+        }
+
         if (anyText) {
 
             let shadersToRunOnText = [];
@@ -72,19 +82,19 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
             let yPos = videoSettings.fontVerticalSpace;
 
             if (videoSettings.displaySongStuff) {
-                textFrame.print(font, 4, yPos, `${videoSettings.songName} by ${videoSettings.artist}`);
+                textFrame.print(font, 4, yPos, `${songinfo.songName} by ${songinfo.artist}`);
                 yPos += videoSettings.fontSize + videoSettings.fontVerticalSpace;
             }
             
             if (videoSettings.displaySongPosition) {
-                textFrame.print(font, 4, yPos, `${secondsToNiceFancyText(time)}/${secondsToNiceFancyText(videoSettings.songDuration)}`);
+                textFrame.print(font, 4, yPos, `${secondsToNiceFancyText(time)}/${secondsToNiceFancyText(songinfo.songDuration)}`);
                 yPos += videoSettings.fontSize + videoSettings.fontVerticalSpace;
             }
 
             if (videoSettings.displayBPMStuff) {
-                textFrame.print(font, 4, yPos, `BPM: ${videoSettings.bpm}`);
+                textFrame.print(font, 4, yPos, `BPM: ${Math.round(songinfo.bpm * 100) / 100}`);
                 yPos += videoSettings.fontSize + videoSettings.fontVerticalSpace;
-                textFrame.print(font, 4, yPos, `${videoSettings.timeSign}`);
+                textFrame.print(font, 4, yPos, `${songinfo.timeSign}`);
 
             }
             
@@ -104,7 +114,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
     console.log(`Utilize FFMPEG to combine the frames together`)
 
     // -y is needed!
-    exec(`ffmpeg -framerate ${videoSettings.frameRate} -i output/rendering/frame%d.png -i ${videoSettings.audioFile} -c:v libx264 -r ${videoSettings.frameRate} -pix_fmt yuv420p -y output/output.mp4`, 
+    exec(`ffmpeg -framerate ${videoSettings.frameRate} -i output/rendering/frame%d.png -i ${videoSettings.audioFile} -c:v libx264 -r ${videoSettings.frameRate} -shortest -pix_fmt yuv420p -y output/output.mp4`, 
     (err, stdout, stderr) => {
         if (err) {
             console.error(err);
@@ -115,4 +125,4 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype.prototyp
 }
 
 
-module.exports = { renderFrameCount, timeArray };
+module.exports = { renderFrameCount, timeArray, makeFrame };
