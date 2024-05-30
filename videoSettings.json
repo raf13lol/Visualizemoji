@@ -1,6 +1,6 @@
 {
     "comment1": "bgVariable is either the hex color of the background or the path from this folder -> bgImage",
-    "bgVariable":   "#000000",
+    "bgVariable":   "#111111",
     "bgImageUsage": false,
 
     "comment6": "Font size has to exist y'know, check assets/font/ for more info",
@@ -16,8 +16,10 @@
     "comment2": "If infoMidi = 'none', useEmojis will be treated as false",
     "comment7": "if you have an infomidi, put infoMidi as eg 'midi.mid' otherwise put it as 'none'",
     "useEmojis":          true,
-    "emojiScaleToScreen": 0.1,
-    "infoMidi":           "test/bpmchange.mid",
+    "emojiScaleToScreen": 0.2,
+    "emojiSpacing":       0.1,
+    "emojiExtraSustain":  0.175,
+    "infoMidi":           "test/2.mid",
 
     "comment3": "You can change this mid-song with 'songInfomation' in onRenderingPrepText()",
     "comment4": "if you have an infomidi, it will auto fill these starting two for you",
@@ -25,10 +27,10 @@
     "timeSign": "4/4",
 
     "comment5": "Song infomation (songDuration is in seconds and is needed for the program to generate the right amount of frames)",
-    "artist":       "Song artist here",
-    "songName":     "SongName",
-    "songDuration": 18,
-    "audioFile":    "test/1.mp3",
+    "artist":       "Blu",
+    "songName":     "Work... with him doctor",
+    "songDuration": 211,
+    "audioFile":    "test/2.mp3",
 
     "displayBPMStuff":     true,
     "displaySongStuff":    true,

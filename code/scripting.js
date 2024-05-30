@@ -42,7 +42,6 @@ async function onRenderedEmojis(emojiFrame = Jimp.prototype, time = Number.proto
 // outputShadersOnText should be an array of shader functions
 async function onRenderingPrepText(songInfo = prototypes.songInfoPrototype.prototype, outputShadersOnText = Array.prototype, 
                                    time = Number.prototype, frame = Number.prototype) {
-    outputShadersOnText.push(chromaticAbberation);
 }
 
 async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.outPrototype) {
@@ -57,7 +56,7 @@ async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.ou
 
 // your last chance to make any changes before the image is saved
 async function onFullRenderedImage(finalImage = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
-
+    shaderUtils.runShaders(finalImage, [chromaticAbberation]);
 }
 
 

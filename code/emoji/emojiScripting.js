@@ -19,8 +19,9 @@ emojiImages = [];
 async function createTheEmojiPrototypes(emojisUsed = Array.prototype) {
     let emojiWidth  = videoSettings.width  * videoSettings.emojiScaleToScreen;
     let emojiHeight = videoSettings.height * videoSettings.emojiScaleToScreen;
-    let spacing = [emojiWidth * 0.05, emojiHeight * 0.05];
-    let emojiCountPerRow = Math.max(1, videoSettings.width / (emojiWidth + spacing[0]) );
+    let spacing = [emojiWidth * videoSettings.emojiSpacing, emojiHeight * videoSettings.emojiSpacing];
+    // this shouldn't have been a decimal, not sure how i didn't notice that
+    let emojiCountPerRow = Math.max(1, Math.floor((videoSettings.width - spacing[0]/4) / (emojiWidth + spacing[0])));
 
     for (let i = 0; i < emojisUsed.length; i++) {
         let emojiId = emojisUsed[i].split("-")[0];
@@ -36,8 +37,8 @@ async function createTheEmojiPrototypes(emojisUsed = Array.prototype) {
         emojiData.imageName = emojiId;
         emojiData.trackName = midiStuffs.noteData[i][0];
         emojiData.trackId = midiStuffs.noteData[i][2];
-        emojiData.position = [emojiWidth * (i % emojiCountPerRow) + spacing[0], 
-                              videoSettings.height - ((emojiHeight + spacing[1]) * (Math.floor(i / emojiCountPerRow) + 1) + spacing[1])];
+        emojiData.position = [(emojiWidth + spacing[0]) * (i % emojiCountPerRow) + spacing[0]/4, 
+                              videoSettings.height - ((emojiHeight + spacing[1]) * (Math.floor(i / emojiCountPerRow) + 1) + spacing[1]/4)];
         emojiData.movementOffset = [0, 0];
 
         emojiImages.push(emojiData);
@@ -134,11 +135,10 @@ async function doTheStuffingsWithTheEmojiImageExclaimationMarkHere(time = Number
 
                 emojiThing.noteStart = note.secondsStart;
                 emojiThing.noteEnd = note.secondsEnd;
-                if (trackFlagCheck(trackName, "S"))
-                    emojiThing.noteEnd += note.secondsEnd - note.secondsStart;
+                emojiThing.noteEnd += (note.secondsEnd - note.secondsStart) * (trackFlagCheck(trackName, "S") ? 1 : 0.12);
 
                 // this should stop issues...?
-                emojiThing.lastNoteIndex = j;
+                emojiThing.lastNoteIndex = j+1;
             }
             else
                 break;

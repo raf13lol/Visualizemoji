@@ -50,7 +50,7 @@ async function doAllThePrepping(songInfo = songInfoPrototype) {
         }
     } 
     catch (e) {
-        console.log("Something went wrong when converting the emoji SVGs to PNGs. Are you sure you've defined all of the emoji ids used in the MIDI file?");
+        console.log("Something went wrong when converting the emoji SVGs to PNGs. Are you sure you've defined all of the emoji ids used in the MIDI file? Error: " + e);
         process.exit(1);
     }
     finally {
