@@ -33,7 +33,7 @@ const getPixelIndex = (image = Jimp.prototype | Number.prototype, x = Number.pro
 // uhh idk for the 3rd arg, ceil seems a bit silly
 // returns {r: pixR, g: pixG, b: pixB, a: pixA}
 const getPixelFromUV = (uv = Array.prototype, image = Jimp.prototype, wrap = false, useRoundInsteadOfFloorForDecimalPixels = false) => {
-
+    
     let baseX = uv[0] * (image.bitmap.width - 1);
     let x = useRoundInsteadOfFloorForDecimalPixels ? Math.round(baseX) : Math.floor(baseX);
 
@@ -74,7 +74,7 @@ const runShaders = async (image = Jimp.prototype, shaderFuncs = Array.prototype)
             inProto.baseImage = baseImage;
             inProto.image = image;
 
-            for (let i = 0; i < shaderFuncs.length; i ++)
+            for (let i = 0; i < shaderFuncs.length; i++)
             {
                 inProto.shaderOrder = i;
 
@@ -84,7 +84,7 @@ const runShaders = async (image = Jimp.prototype, shaderFuncs = Array.prototype)
                 inProto.a = image.bitmap.data[idx + 3];
 
                 let outProto = {r: inProto.r, g: inProto.g, b: inProto.b, a: inProto.a};
-
+                
                 await shaderFuncs[i](inProto, outProto);
 
                 image.bitmap.data[idx] = outProto.r;

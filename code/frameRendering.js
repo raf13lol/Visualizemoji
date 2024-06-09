@@ -72,9 +72,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype, countOf
         }
 
         if (anyText) {
-
-            let shadersToRunOnText = [];
-            await scripting.onRenderingPrepText(songinfo, shadersToRunOnText);
+            await scripting.onRenderingPrepText(songinfo, time, frameNumber);
 
             let textFrame = Jimp.prototype; 
             textFrame = await makeFrame(true);
@@ -98,7 +96,7 @@ const renderFrameCount = async (songInfo = prototypes.songInfoPrototype, countOf
 
             }
             
-            await runShaders(textFrame, shadersToRunOnText);
+            await scripting.onRenderedText(textFrame, time, frameNumber);
 
             frame.composite(textFrame, 0, 0);
         }

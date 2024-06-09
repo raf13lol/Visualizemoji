@@ -12,12 +12,12 @@ const prototypes = require("./prototypes.js");
 
 
 // this is before the directories are made 
-async function onRenderingPrepStart(songInfo = prototypes.songInfoPrototype.prototype) {
+async function onRenderingPrepStart(songInfo = prototypes.songInfoPrototype) {
 
 }
 
 // this is after the directories are made but before any rendering happens
-async function onRenderingPrepDone(songInfo = prototypes.songInfoPrototype.prototype) {
+async function onRenderingPrepDone(songInfo = prototypes.songInfoPrototype) {
 
 }
 
@@ -39,9 +39,12 @@ async function onRenderedEmojis(emojiFrame = Jimp.prototype, time = Number.proto
 
 // this is before the text is rendered, your chance here for certain effects to happen only to the text
 // you can also change the songinfo thing here if you wish
-// outputShadersOnText should be an array of shader functions
-async function onRenderingPrepText(songInfo = prototypes.songInfoPrototype.prototype, outputShadersOnText = Array.prototype, 
-                                   time = Number.prototype, frame = Number.prototype) {
+async function onRenderingPrepText(songInfo = prototypes.songInfoPrototype, time = Number.prototype, frame = Number.prototype) {
+
+}
+
+// after text is rendered
+async function onRenderedText(textFrame = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
 }
 
 async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.outPrototype) {
@@ -51,18 +54,17 @@ async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.ou
     o.r = r.r;
     o.g = i.g;
     o.b = b.b;
-    o.a = (i.a + r.a + b.a) / 3;
+    o.a = 255;
 }
 
 // your last chance to make any changes before the image is saved
 async function onFullRenderedImage(finalImage = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
-    shaderUtils.runShaders(finalImage, [chromaticAbberation]);
 }
 
 
 module.exports = { 
     onRenderingPrepStart, onRenderingPrepDone, 
     onRenderingBaseFrameStart, onRenderedBaseFrame,
-    onRenderingPrepText, onFullRenderedImage,
-    onRenderedEmojis
+    onRenderingPrepText, onRenderedText, 
+    onFullRenderedImage, onRenderedEmojis
 };
