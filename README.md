@@ -97,9 +97,9 @@ The `code/utils` folder is where.. well... utils are.<br>
 
 > *"how work >?/ ? ?  !1/1/???// 😁"*
 
-Click on the preview image 😁😁
+Click on the preview image 😁😁 (takes you to youtube video)
 
-[![Example](./_readme/videopreview.png)](./_readme/video.mp4)
+[![Example](./_readme/videopreview.png)](https://youtu.be/ILLyyVcGsas)
 
 ## FAQ
 
