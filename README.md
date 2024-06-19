@@ -14,7 +14,6 @@ Visualizemoji is a MIDI visualizer (Can be used without a MIDI.) that works by m
   - [Rundown on the file structure](#rundown-on-the-file-structure)
   - [Example](#example)
   - [FAQ](#faq)
-  - [The "\*"'s](#the-s)
 
 
 ## Usage
