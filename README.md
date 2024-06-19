@@ -116,11 +116,3 @@ That video takes my pc (very high-end i think) ~1.5 hours to render in the VSC c
 
 No. But we will add some actual asked question if people ask them a lot.
 
-## The "*"'s
-
-> *"Quote my unquote"*
-
-\*  - Can be used without a MIDI.
-
-\*\* - Well... uh... within reason I suppose?# Visualizemoji
-
