@@ -47,6 +47,7 @@ async function onRenderingPrepText(songInfo = prototypes.songInfoPrototype, time
 async function onRenderedText(textFrame = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
 }
 
+// Example shader
 async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.outPrototype) {
     let r = shaderUtils.getPixelFromUV([i.uv[0] + 0.003, i.uv[1]], i.baseImage, true);
     let b = shaderUtils.getPixelFromUV([i.uv[0] - 0.003, i.uv[1]], i.baseImage, true);
@@ -59,6 +60,8 @@ async function chromaticAbberation(i = prototypes.inPrototype, o = prototypes.ou
 
 // your last chance to make any changes before the image is saved
 async function onFullRenderedImage(finalImage = Jimp.prototype, time = Number.prototype, frame = Number.prototype) {
+    // how you would run a shader
+    // shaderUtils.runShaders(finalImage, [chromaticAbberation]);
 }
 
 
