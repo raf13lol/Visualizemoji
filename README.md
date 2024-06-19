@@ -113,5 +113,5 @@ That video takes my pc (very high-end i think) ~1.5 hours to render in the VSC c
 
 > *"Has anyone actually asked these questions?"*
 
-No. But we will add some actual asked question if people ask them a lot.
+No. But we will add some actual asked questions if people ask them a lot.
 
